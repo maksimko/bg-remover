@@ -2,31 +2,37 @@
 
 Инструмент для пакетного удаления фона с изображений. Использует [rembg](https://github.com/danielgatis/rembg) для удаления фона, убирает белую окантовку по краям и автоматически обрезает результат.
 
-## Установка (Windows)
+## Установка
 
 ### 1. Установите Python
 
 Скачайте и установите Python 3.10+ с [python.org](https://www.python.org/downloads/). При установке отметьте галочку **"Add Python to PATH"**.
 
-### 2. Установите зависимости
-
-Откройте Командную строку или PowerShell и выполните:
+### 2. Создайте виртуальное окружение (рекомендуется)
 
 ```
-pip install rembg[gpu] Pillow numpy scipy
+python3 -m venv venv
+source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate      # Windows
 ```
 
-Если у вас нет GPU, используйте:
+### 3. Установите зависимости
 
 ```
-pip install rembg Pillow numpy scipy
+pip install "rembg[gpu]" Pillow numpy scipy
 ```
 
-### 3. Подготовьте изображения
+Если у вас нет NVIDIA GPU, используйте:
+
+```
+pip install "rembg[cpu]" Pillow numpy scipy
+```
+
+### 4. Подготовьте изображения
 
 Поместите исходные изображения (`.png`, `.jpg`, `.jpeg`) в папку `raw_images`.
 
-### 4. Запуск
+### 5. Запуск
 
 ```
 python test.py
@@ -47,7 +53,7 @@ python app.py
 ### 1. Установите зависимости для сборки
 
 ```
-pip install pyinstaller rembg Pillow numpy scipy
+pip install pyinstaller "rembg[cpu]" Pillow numpy scipy
 ```
 
 ### 2. Скачайте модель (если ещё не скачана)

@@ -2,31 +2,37 @@
 
 Batch background removal tool for images. Uses [rembg](https://github.com/danielgatis/rembg) to remove backgrounds, cleans up white fringe around edges, and auto-crops the result.
 
-## Setup (Windows)
+## Setup
 
 ### 1. Install Python
 
 Download and install Python 3.10+ from [python.org](https://www.python.org/downloads/). During installation, check **"Add Python to PATH"**.
 
-### 2. Install dependencies
-
-Open Command Prompt or PowerShell and run:
+### 2. Create a virtual environment (recommended)
 
 ```
-pip install rembg[gpu] Pillow numpy scipy
+python3 -m venv venv
+source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate      # Windows
 ```
 
-If you don't have a GPU, use:
+### 3. Install dependencies
 
 ```
-pip install rembg Pillow numpy scipy
+pip install "rembg[gpu]" Pillow numpy scipy
 ```
 
-### 3. Prepare images
+If you don't have an NVIDIA GPU, use:
+
+```
+pip install "rembg[cpu]" Pillow numpy scipy
+```
+
+### 4. Prepare images
 
 Place your input images (`.png`, `.jpg`, `.jpeg`) into the `raw_images` folder.
 
-### 4. Run
+### 5. Run
 
 ```
 python test.py
@@ -47,7 +53,7 @@ python app.py
 ### 1. Install build dependencies
 
 ```
-pip install pyinstaller rembg Pillow numpy scipy
+pip install pyinstaller "rembg[cpu]" Pillow numpy scipy
 ```
 
 ### 2. Download the model (if not already cached)
