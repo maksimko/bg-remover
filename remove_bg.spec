@@ -10,6 +10,7 @@
 #
 
 import os
+from PyInstaller.utils.hooks import copy_metadata
 
 # Path to the cached rembg model
 u2net_home = os.path.join(os.path.expanduser("~"), ".u2net")
@@ -21,6 +22,7 @@ a = Analysis(
     binaries=[],
     datas=[
         (model_file, "models"),
+        *copy_metadata("pymatting"),
     ],
     hiddenimports=[
         "rembg.sessions.isnet_general_use",
