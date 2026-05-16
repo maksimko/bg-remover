@@ -135,11 +135,8 @@ class App:
                 no_bg = remove(img, session=session)
                 no_bg = clean_white_edges(no_bg, border_size=border, white_threshold=threshold)
 
-                bbox = no_bg.getbbox()
-                cropped = no_bg.crop(bbox) if bbox else no_bg
-
                 output_name = os.path.splitext(filename)[0] + ".png"
-                cropped.save(os.path.join(output_dir, output_name))
+                no_bg.save(os.path.join(output_dir, output_name))
 
                 self.root.after(0, lambda v=i + 1: self.progress.config(value=v))
 
